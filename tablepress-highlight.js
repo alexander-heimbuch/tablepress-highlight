@@ -1,10 +1,6 @@
 (function ($) {
     'use strict';
 
-    if (window.TABLE_HIGHLIGHT === undefined) {
-        return;
-    }
-
     var setColor = function (nodes, color) {
             var $nodes = nodes;
 
@@ -57,12 +53,18 @@
                 }
             });
     };
+    
+    $(document).ready(function () {      
+        if (window.TABLE_HIGHLIGHT === undefined) {
+            return;
+        }
 
-    $.each(window.TABLE_HIGHLIGHT, function (tableId, data) {
-        var $table = $('#' + tableId);
+        $.each(window.TABLE_HIGHLIGHT, function (tableId, data) {
+            var $table = $('#' + tableId);
 
-        $table.on( 'draw.dt', function () {
-            highlight($table, data);
+            $table.on( 'draw.dt', function () {
+                highlight($table, data);
+            });
         });
     });
 })(jQuery);
